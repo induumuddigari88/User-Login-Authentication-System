@@ -1,0 +1,122 @@
+User Login & Authentication System-Explanation
+
+Q) 1. What is Password Hashing and Why is Storing Plain Text Passwords Dangerous?
+
+Password hashing is the process of converting a user's original password into an encrypted string using a hashing algorithm such as bcrypt.
+
+For example:
+
+Original Password:
+123456
+
+Hashed Password:
+$2b$12$kjsdfhskdjfhskjdfhsdkjf...
+
+The hashed value cannot easily be converted back to the original password.
+
+Q) Why Plain Text Passwords Are Dangerous
+
+If passwords are stored directly in the database as plain text, anyone who gains access to the database can immediately see all user passwords. 
+This creates a major security risk because users often reuse passwords across multiple websites.
+
+
+Q) How We Implemented Hashing in Our Project
+
+We used Flask-Bcrypt for password security.
+
+* During registration:
+
+python
+hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+
+This converts the password into a secure hashed value before storing it in MySQL.
+
+* During login:
+
+python
+bcrypt.check_password_hash(user['password'], password)
+
+This compares the entered password with the stored hash securely without revealing the original password.
+
+
+
+Q) 2. What is a Session and How Does Flask Use It?
+
+A session is a temporary storage mechanism used to remember a logged-in user between requests.
+
+When a user logs in successfully, Flask stores user information inside a session.
+
+Example:
+
+python
+session['user'] = {
+    "id": user['id'],
+    "username": user['username'],
+    "email": user['email'],
+    "role": user['role']
+}
+
+The session is stored securely using Flask’s secret key.
+
+python
+app.secret_key = "super_secret_key"
+
+
+Q) How Sessions Work in Our Project
+
+1. User enters username and password.
+2. Flask checks credentials from the database.
+3. If correct, user data is stored in session.
+4. The browser receives a session cookie.
+5. On future requests, Flask reads the session cookie and identifies the logged-in user.
+6. Protected routes like '/dashboard' and '/profile' check whether the session exists.
+
+Example:
+
+python
+if 'user' not in session:
+    return jsonify({"message": "Unauthorized"}), 401
+
+
+If the session does not exist, access is denied.
+
+** Logout Process
+
+During logout:
+
+python
+session.pop('user', None)
+
+This removes the session and logs the user out securely.
+
+
+
+
+Q) 3. What Happens When a Wrong Password Is Entered?
+
+When a user enters a wrong password:
+
+1. Flask receives the login request.
+2. The backend searches for the username in MySQL.
+3. If the username exists, Flask compares the entered password with the hashed password stored in the database.
+4. The comparison fails because the passwords do not match.
+5. Flask returns an error response.
+
+Code used:
+
+python
+if bcrypt.check_password_hash(user['password'], password):
+
+
+If the condition fails:
+
+python
+return jsonify({
+    "message": "Invalid username or password"
+}), 401
+
+
+
+*** Conclusion
+
+This project demonstrates the core concepts of authentication and authorization in web development. It simulates how real-world applications securely manage user accounts, sessions, and protected resources using Flask and MySQL.

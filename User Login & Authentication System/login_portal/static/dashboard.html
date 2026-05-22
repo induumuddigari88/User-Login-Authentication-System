@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="dashboard-card">
+    <h1 id="welcomeText"></h1>
+
+    <div class="info-box">
+        <p><strong>Role:</strong> <span id="role"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Joined:</strong> <span id="createdAt"></span></p>
+    </div>
+
+    <button onclick="logoutUser()">Logout</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

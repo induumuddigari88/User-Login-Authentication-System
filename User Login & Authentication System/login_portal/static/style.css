@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(
+        135deg,
+        #ff6ec4,
+        #7873f5,
+        #4ADEDE,
+        #6BCB77
+    );
+
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+}
+
+/* ANIMATED BACKGROUND */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* GLASSMORPHISM CARD */
+.card,
+.dashboard-card {
+    width: 400px;
+    padding: 40px;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    color: white;
+
+    animation: fadeIn 1s ease;
+}
+
+/* FADE ANIMATION */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card h2,
+.dashboard-card h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.card input {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+
+    border: none;
+    outline: none;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.2);
+
+    color: white;
+
+    font-size: 15px;
+}
+
+/* INPUT PLACEHOLDER */
+.card input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* BUTTON */
+.card button,
+.dashboard-card button {
+    width: 100%;
+    padding: 14px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        45deg,
+        #ff6ec4,
+        #7873f5
+    );
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.4s;
+}
+
+/* BUTTON HOVER */
+.card button:hover,
+.dashboard-card button:hover {
+    transform: scale(1.05);
+
+    background: linear-gradient(
+        45deg,
+        #7873f5,
+        #ff6ec4
+    );
+}
+
+/* LINKS */
+.card p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.card a {
+    color: #fff176;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ERROR MESSAGE */
+.error {
+    color: #ffcccb;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* DASHBOARD INFO */
+.info-box {
+    margin: 25px 0;
+    line-height: 2;
+    font-size: 18px;
+}
+
+/* PASSWORD STRENGTH */
+.strength {
+    width: 100%;
+    height: 8px;
+
+    background: rgba(255,255,255,0.2);
+
+    border-radius: 20px;
+
+    margin-top: 5px;
+}
+
+#strengthBar {
+    height: 100%;
+    width: 0;
+
+    border-radius: 20px;
+
+    transition: 0.4s;
+}
+
+/* MOBILE RESPONSIVE */
+@media screen and (max-width: 500px) {
+
+    .card,
+    .dashboard-card {
+        width: 95%;
+        padding: 25px;
+    }
+
+    .card h2,
+    .dashboard-card h1 {
+        font-size: 24px;
+    }
+}
